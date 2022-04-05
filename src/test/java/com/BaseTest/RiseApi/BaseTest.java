@@ -5,9 +5,11 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
 import com.google.gson.JsonObject;
+import com.utilites.RiseApi.SendMailSSLWithAttachment;
 
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
@@ -58,5 +60,11 @@ public class BaseTest {
 
 		RestAssured.baseURI = prop.getProperty("baseURI");
 
+	}
+
+	@AfterSuite
+	public void TearDown() {
+
+		//SendMailSSLWithAttachment.SendEmailReport();
 	}
 }

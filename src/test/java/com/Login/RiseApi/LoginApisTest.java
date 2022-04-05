@@ -1,17 +1,17 @@
 package com.Login.RiseApi;
 
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import com.BaseTest.RiseApi.BaseTest;
 import com.google.gson.Gson;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.utilites.RiseApi.ReportUtility;
 
 import io.restassured.RestAssured;
-import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
 
+
+@Listeners(ReportUtility.class)
 public class LoginApisTest extends BaseTest {
 
 	@Test(priority = 1, enabled = true)
@@ -74,7 +74,7 @@ public class LoginApisTest extends BaseTest {
 
 		statusCode = response.getStatusCode();
 		responseMessage = jObject.get("msg").getAsString();
-		Assert.assertEquals(statusCode /* actual value */, 200/* expected value */, "Correct status code returned");
+		Assert.assertEquals(statusCode /* actual value */, 400/* expected value */, "Correct status code returned");
 		Assert.assertEquals(responseMessage, "Login Successfully.", "Correct response message returned");
 
 	}
